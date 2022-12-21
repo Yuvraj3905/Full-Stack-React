@@ -18,6 +18,12 @@ class App extends Component {
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   }
+  asyncFunction = async() => {
+    await fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(res => res.json())
+    .then(json => console.log(json))
+
+  }
 
   render() {
     return <div>{this.state.hello ? <div>{this.state.hello}</div> : null}</div>;
