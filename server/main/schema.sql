@@ -1,4 +1,4 @@
-CREATE TABLE user(
+CREATE TABLE users(
     uid SERIAL PRIMARY KEY,
     username VARCHAR(255) UNIQUE,
     email VARCHAR(255),
@@ -22,4 +22,4 @@ CREATE TABLE comments(
     user_id INT REFERENCES users(uid),
     post_id INT REFERENCES posts(pid),
     date_created TIMESTAMP
-)
+);
