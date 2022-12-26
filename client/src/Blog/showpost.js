@@ -33,6 +33,26 @@ const RenderComments = ( comment )=> (
 
 
 class ShowPost extends Component {
+    constructor(props) {
+      super(props)
+
+      this.state = {
+        open: false,
+        comments:'',
+        cid:''
+
+      }
+    }
+   handleClickOpen=(cid, comment) => (
+     this.setState({open: true, comments: comment,cid: cid})
+   );
+
+   handleClose = () => (
+    this.setState({open: false,comment:'',cid:''})
+   )
+
+   
+
     render(){
         return (
             <div>
