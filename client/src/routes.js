@@ -14,6 +14,17 @@ import PrivateComponent from './functional/privatecomponent';
 import UnauthRedirect from './functional/unauthredirect';
 import Home from './functional/home';
 import RenderListItem from './functional/renderlistitem';
+import SignUp from './functional/signup';
+
+import Posts from './Blog/posts';
+import AddPost from './Blog/addpost';
+import ShowPost from './Blog/showpost';
+import EditPost from './Blog/editpost';
+
+import ShowUser from './Profile/showuser';
+import SendMessage from './Profile/sendmessage';
+import ShowMessages from './Profile/showmessages';
+import ReplytoMessage from './Profile/replytomessage';
 
 import * as ACTIONS from './store/actions/actions';
 
@@ -22,7 +33,6 @@ import AuthCheck from './utils/authcheck';
 import history from './utils/history';
 
 import { Router, Route, Switch, Redirect } from 'react-router';
-
 
 
 
@@ -71,6 +81,17 @@ class Routes extends Component {
             <Route path='/authcheck' render={() => <AuthCheck auth={auth} /> } />
             <Route path='/redirect' component={UnauthRedirect} />
             <Route path='/renderlist' component={RenderList} />
+
+            <Route path="/user/:name" component={ ShowUser } />
+            <PrivateRoute path="/sendmessage"  auth={auth} component={ SendMessage } />
+            <PrivateRoute path="/showmessages/:id"  auth={auth}  component={ ShowMessages } />
+            <PrivateRoute path="/replytomessage"  auth={auth}  component={ ReplytoMessage } />
+
+            <Route path='/posts' component={Posts} />
+            <Route path='/post/:pid' component={ShowPost} />
+            <Route path='/editpost/:pid' component={EditPost} />
+            <Route path='/addpost' component={AddPost} />
+            <Route path="/signup" render={(props) => <SignUp auth={auth} {...props} />} />
 
             <Route path='/callback' render={(props) => { handleAuthentication(props); return <Callback />}} />
             <Route path="/component1" render={(props) => <Component1 {...props} /> } />
