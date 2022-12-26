@@ -14,6 +14,24 @@ import DialogContentText from '@material-ui/core/DialogContent Text';
 import DialogTitle from '@material-ui/core/DialogTitle'; 
 import Button from '@material-ui/core/Button';
 
+
+
+const RenderComments = ( comment )=> (
+    <div>
+        <h3> {comment.comment.comment} </h3>
+        <small>{comment.comment.date_created}</small>
+        <p>By:{comment.comment.author}</p>
+        {comment.cur_user_id==comment.comment.user_id
+        ? <Button onClick={()=> this.handleClickOpen(comment.comment.cid, comment.comment.comment)}>
+            Edit
+        </Button>
+        :null
+        }
+    </div>
+)
+
+
+
 class ShowPost extends Component {
     render(){
         return (
@@ -33,3 +51,15 @@ class ShowPost extends Component {
         )
     }
 }
+function mapStateToProps(state){
+    return {
+        comments: state.posts_reducer.comments
+    }
+}
+function mapDispatchToProps(dispatch){
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowPost)
