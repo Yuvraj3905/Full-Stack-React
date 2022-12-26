@@ -36,6 +36,12 @@ class Posts extends Component {
     render() {
         return(
             <div>
+                <br />
+                <Link to="/newpost">
+                    <Button color="primary">
+                        Add Post
+                    </Button>
+                </Link>
                 <h1>
                     Posts
                 </h1>
@@ -74,4 +80,4 @@ function mapDispatchToProps(dispatch){
 }
 
 
-export default connect(mapStateToProps)(Posts)
+export default connect(mapStateToProps, mapDispatchToProps)(Posts)
