@@ -1,16 +1,23 @@
 import React from 'react';
 import axios from 'axios';
-
 import history from '../utils/history';
 import TextField from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import { Component } from 'react';
 
 class AddPost extends Component {
     handleSubmit=(event)=>{
         event.preventDefault()
         const user_id= this.props.db_profile[0].uid
         const username=this.props.db_profile[0].username
-        const data=
+        const data = {title: event.target.title.value,
+             body: event.target.body.value,
+              username: username,
+               uid: user_id} 
+               axios.post('/api/post/posttodb', data) 
+               .then (response => console.log(response )) 
+                .catch((err) => console.log(err))
+                 .then(setTimeout(() => history.replace('/'), 700 ))
     }
 
 
@@ -34,7 +41,7 @@ class AddPost extends Component {
                     <button type='submit'>Submit</button>
                 </form>
                 <br />
-                <button onClick={{}=> history.replace('posts')}>Cancel</button>
+                <button onClick={()=> history.replace('posts')}>Cancel</button>
             </div>
         )
     }
