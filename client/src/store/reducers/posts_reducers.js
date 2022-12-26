@@ -1,8 +1,10 @@
 import * as ACTION_TYPES from '../actions/action_types'
 
 const initialState = {
- posts: [],
- comments: []
+  posts: [],
+  comments: [],
+  user_posts: [],
+  db_search_posts: []
 }
 
 const PostsReducer = (state = initialState, action) => {
@@ -27,9 +29,26 @@ const PostsReducer = (state = initialState, action) => {
           ...state,
           comments: []
         }
-
-       
-        
+      case ACTION_TYPES.FETCH_USER_POSTS:
+        return {
+          ...state,
+          user_posts: action.payload
+        }
+      case ACTION_TYPES.REMOVE_USER_POSTS:
+        return {
+          ...state,
+          user_posts: []
+        }
+      case ACTION_TYPES.SEARCH_POSTS_SUCCESS:
+        return {
+          ...state,
+          db_search_posts: action.payload
+        }
+      case ACTION_TYPES.SEARCH_POSTS_FAILURE:
+        return {
+          ...state,
+          db_search_posts: []
+        }
       default:
         return state
     }
