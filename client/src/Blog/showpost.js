@@ -21,6 +21,13 @@ class ShowPost extends Component {
             <div>
             <h2>Post</h2>
             <h4>{this.props.location.state.post.post.title}</h4>
+            <p>{this.props.location.state.post.post.body}</p>
+            <p>{this.props.location.state.post.post.author}</p>
+
+            </div>
+            <div>
+                <h2>Comments:</h2>
+                {this.props.comments}
             </div>
             </div>
         )
