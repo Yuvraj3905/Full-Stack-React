@@ -65,7 +65,40 @@ class ShowPost extends Component {
             </div>
             <div>
                 <h2>Comments:</h2>
-                {this.props.comments}
+                {this.props.comments
+                ? this.props.comments.map(comment => 
+                    <RenderComments comment={comment}
+                     cur_user_id={this.props.db_profile[0].uid}
+                     key={comment.cid}
+                      />)
+                      :null
+                
+            }
+            </div>
+            <div> 
+                <form onSubmit={this.handleSubmit}> 
+                <TextField 
+                id="comment"
+                 label="Comment" 
+                 margin="normal" /> 
+                 <br /> 
+                 <Button type="submit"> Submit</Button> 
+                 </form> 
+                 </div> 
+                 <div> 
+             <Dialog open={this.state.open} 
+             onClose={this.handleClose} 
+             aria-labelledby="alert-dialog-title" 
+             aria-describedby="alert-dialog-description"
+             >
+                <DialogTitle id="alert-dialog-title">Edit Comment</DialogTitle>
+                <DialogContent>
+                    <DialogContentText
+                    id="alert-dialog-description"
+                    />
+                    <input type="text" value={this.state.comment} onChange={this.handleCommentChange} />
+                </DialogContent>
+             </Dialog>
             </div>
             </div>
         )
